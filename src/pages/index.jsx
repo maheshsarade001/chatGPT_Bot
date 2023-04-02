@@ -2,13 +2,17 @@ import { Inter } from "next/font/google";
 import ChatGptLogo from "../../public/ChatGPT_logo.png";
 import Image from "next/image";
 import AxiosInstance from "@/helper/AxiosInstance";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [chats, setChats] = useState([]);
   const [inputText, setInputText] = useState("");
+  useEffect(() => {
+    let localData = localStorage.getItem("chats") || "[]";
+    setChats(JSON.parse(localData));
+  }, []);
   const onSubmit = () => {
     if (!inputText) {
       return alert("Please enter a message");
@@ -46,12 +50,24 @@ export default function Home() {
         ]);
         setInputText("");
         setLoading(false);
+        localStorage.setItem(
+          "chats",
+          JSON.stringify([
+            ...chats,
+            {
+              msg: tempText,
+              fromBot: false,
+            },
+            obj,
+          ])
+        );
       })
       .catch((err) => {
         console.log(err.response);
         setLoading(false);
       });
   };
+
   return (
     <div className="container mx-auto">
       <div className=" border rounded">
