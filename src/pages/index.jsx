@@ -84,7 +84,7 @@ export default function Home() {
               </span>
               <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span>
             </div>
-            <div className="relative w-full p-6 overflow-y-auto h-[40rem]">
+            <div className="relative w-full p-6 overflow-y-auto min-h-[82vh]">
               <ul className="space-y-2">
                 {chats.map((chat) => (
                   <li
