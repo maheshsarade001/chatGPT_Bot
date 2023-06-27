@@ -144,7 +144,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Chatbot</title>
+        <title>Chatbot </title>
       </Head>
       <div className="dark:bg-slate-800 min-h-screen">
         <div className="container mx-auto">
